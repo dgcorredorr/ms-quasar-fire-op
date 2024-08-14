@@ -2,7 +2,6 @@ package com.fstech.application.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
 import org.springframework.web.server.ServerWebExchange;
 
 import com.fstech.application.dto.GenericRequestDto;
