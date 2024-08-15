@@ -14,10 +14,10 @@ Desde su línea de comando:
 
 ```bash
 # Clonar repositorio
-$ git clone https://github.com/fstech-co/ms-template
+$ git clone https://github.com/fstech-co/ms-template-spring-webflux
 
 # Entrar al repositorio local
-$ cd ms-template
+$ cd ms-template-spring-webflux
 
 # Instalar dependencias
 $ mvn install
@@ -49,7 +49,7 @@ Desde su línea de comando:
 ```bash
 # Comando para ejecutar pruebas unitarias con cobertura y generar informe herramienta SonarQube
 $ mvn clean verify sonar:sonar -Dsonar.login=<SONARQUBE_LOGIN> -Dsonar.password=<SONARQUBE_PASSWORD>
--Dsonar.projectKey=ms-template -Dsonar.projectName='ms-template' -Dsonar.host.url=<SONARQUBE_URL>
+-Dsonar.projectKey=ms-template-spring-webflux -Dsonar.projectName='ms-template-spring-webflux' -Dsonar.host.url=<SONARQUBE_URL>
 ```
 Una vez finalizado el proceso, podrá acceder desde el [navegador](http://localhost:9000/projects?sort=name) para validar que se visualice correctamente el informe de SonarQube.
 

@@ -16,7 +16,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.fstech</groupId>
-	<artifactId>ms-template-spring</artifactId>
+	<artifactId>ms-template-spring-webflux</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>Template Microservicios FullSpectrum Tech</name>
 	<description>Template Microservicios de la fábrica de software FullSpectrum Tech</description>
@@ -69,13 +69,13 @@
 
 		<dependency>
 			<groupId>com.fstech</groupId>
-			<artifactId>lib-rest-spring</artifactId>
+			<artifactId>lib-rest-spring-webflux</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.fstech</groupId>
-			<artifactId>lib-base-spring</artifactId>
+			<artifactId>lib-base-spring-webflux</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
