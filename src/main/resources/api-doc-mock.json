@@ -1,0 +1,22 @@
+{
+    "userExample": {
+      "id": "123",
+      "name": "John Doe",
+      "email": "[email protected]"
+    },
+    "notFoundExample": {
+      "status": 404,
+      "error": "Not Found",
+      "message": "Contacto no encontrado"
+    },
+    "createUserExample": {
+      "name": "Jane Doe",
+      "email": "[email protected]"
+    },
+    "createUserResponseExample": {
+      "id": "124",
+      "name": "Jane Doe",
+      "email": "[email protected]"
+    }
+  }
+  
