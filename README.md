@@ -14,7 +14,7 @@ Desde su línea de comando:
 
 ```bash
 # Clonar repositorio
-$ git clone https://github.com/fstech-co/ms-template-spring-webflux
+$ git clone https://github.com/fspectrum/ms-template-spring-webflux
 
 # Entrar al repositorio local
 $ cd ms-template-spring-webflux
