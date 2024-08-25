@@ -3,29 +3,35 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<properties>
 		<app.name>Microservicio Template Base</app.name>
 		<app.description>Microservicio base de la fábrica de software FullSpectrum Tech</app.description>
 		<app.version>1.0.0-SNAPSHOT</app.version>
-		<java.version>17</java.version>
 	</properties>
+
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.2</version>
-		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
+        <groupId>com.fstech</groupId>
+        <artifactId>ms-parent-spring-webflux</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
 	<groupId>com.fstech</groupId>
 	<artifactId>ms-template-spring-webflux</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
+
 	<name>Template Microservicios FullSpectrum Tech</name>
 	<description>Template Microservicios de la fábrica de software FullSpectrum Tech</description>
+
 	<url />
 	<licenses>
 		<license />
 	</licenses>
 	<developers>
-		<developer />
+		<developer>
+			<name>David Corredor R.</name>
+			<email>david.corredor@fspectrum.tech</email>
+		</developer>
 	</developers>
 	<scm>
 		<connection />
@@ -33,6 +39,7 @@
 		<tag />
 		<url />
 	</scm>
+
 	<dependencies>
 
 		<dependency>
@@ -50,21 +57,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>io.projectreactor</groupId>
-			<artifactId>reactor-test</artifactId>
-			<scope>test</scope>
+			<groupId>com.fstech</groupId>
+			<artifactId>lib-base-spring-webflux</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
@@ -73,73 +68,6 @@
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.fstech</groupId>
-			<artifactId>lib-base-spring-webflux</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.12</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>report</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>properties-maven-plugin</artifactId>
-				<version>1.2.1</version>
-				<executions>
-					<execution>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>write-project-properties</goal>
-						</goals>
-						<configuration>
-							<outputFile>${basedir}/src/main/resources/maven.properties</outputFile>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.sonarsource.scanner.maven</groupId>
-					<artifactId>sonar-maven-plugin</artifactId>
-					<version>4.0.0.4121</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
 
 </project>

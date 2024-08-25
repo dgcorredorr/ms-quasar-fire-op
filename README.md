@@ -72,4 +72,4 @@ Los diferentes autores y encargados de cada operación de la aplicación para in
 
 | Operación             | Autor                  | Correo                    |
 | --------------------- |------------------------|---------------------------|
-| General               | David Corredor Ramírez | dgcorredorr@gmail.com |
+| General               | David Corredor Ramírez | david.corredor@fspectrum.tech |
