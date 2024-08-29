@@ -18,11 +18,8 @@ COPY pom.xml ./
 # Copiar los archivos de la aplicación al directorio de trabajo del contenedor
 COPY src ./src
 
-# Instalar las dependencias de la aplicación (descargar las dependencias)
-RUN mvn dependency:resolve
-
-# Compilar la aplicación
-RUN mvn package
+# Instalar las dependencias de la aplicación (descargar las dependencias) y Compilar la aplicación
+RUN mvn dependency:resolve && mvn package
 
 # Exponer el puerto que la aplicación usa
 EXPOSE 8080
