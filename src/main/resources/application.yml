@@ -1,0 +1,9 @@
+spring:
+    application:
+        name: ms-template
+    config:
+        import: optional:configserver:http://localhost:8888
+    cloud:
+        config:
+            name: ms-template
+            profile: dev

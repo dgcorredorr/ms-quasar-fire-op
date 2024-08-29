@@ -3,7 +3,7 @@ FROM alpine:3.19.3
 
 # Actualizar los repositorios e instalar dependencias necesarias
 RUN apk update && apk upgrade && \
-    apk add --no-cache curl tar bash openjdk17 maven
+    apk add --no-cache bash curl maven openjdk17 tar
 
 # Establecer JAVA_HOME y añadirlo al PATH
 ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk

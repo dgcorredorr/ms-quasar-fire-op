@@ -1,9 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "general.app.loglevel",
-      "type": "java.lang.String",
-      "description": "The log level for the application."
-    }
-  ]
-}

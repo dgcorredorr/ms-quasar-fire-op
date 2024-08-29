@@ -50,13 +50,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-docker-compose</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
 			<groupId>com.fstech</groupId>
 			<artifactId>lib-base-spring-webflux</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
