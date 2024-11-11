@@ -6,22 +6,22 @@
 
 	<properties>
 		<app.name>Microservicio Template Base</app.name>
-		<app.description>Microservicio base de la fábrica de software FullSpectrum Tech</app.description>
+		<app.description>Microservicio base</app.description>
 		<app.version>1.0.0-SNAPSHOT</app.version>
 	</properties>
 
 	<parent>
-        <groupId>com.fstech</groupId>
+        <groupId>com.meli</groupId>
         <artifactId>ms-parent-spring-webflux</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-	<groupId>com.fstech</groupId>
+	<groupId>com.meli</groupId>
 	<artifactId>ms-template-spring-webflux</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 
-	<name>Template Microservicios FullSpectrum Tech</name>
-	<description>Template Microservicios de la fábrica de software FullSpectrum Tech</description>
+	<name>Template Microservicios</name>
+	<description>Template Microservicios</description>
 
 	<url />
 	<licenses>
@@ -30,7 +30,7 @@
 	<developers>
 		<developer>
 			<name>David Corredor R.</name>
-			<email>david.corredor@fspectrum.tech</email>
+			<email>dgcorredorr@gmail.com</email>
 		</developer>
 	</developers>
 	<scm>
@@ -50,14 +50,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.fstech</groupId>
+			<groupId>com.meli</groupId>
 			<artifactId>lib-base-spring-webflux</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.fstech</groupId>
-			<artifactId>lib-rest-spring-webflux</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 

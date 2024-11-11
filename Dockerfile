@@ -1,28 +1,27 @@
-# Usar una imagen base de Alpine Linux
-FROM alpine:3.19.3
+# Etapa 1: Construcción de la aplicación
+FROM maven:3.8.5-openjdk-17 AS builder
 
-# Actualizar los repositorios e instalar dependencias necesarias
-RUN apk update && apk upgrade && \
-    apk add --no-cache bash curl maven openjdk17 tar
+# Establecer el directorio de trabajo
+WORKDIR /app
 
-# Establecer JAVA_HOME y añadirlo al PATH
-ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk
-ENV PATH $JAVA_HOME/bin:$PATH
-
-# Establecer el directorio de trabajo dentro del contenedor
-WORKDIR /usr/src/app
-
-# Copiar el archivo de configuración de Maven
-COPY pom.xml ./
-
-# Copiar los archivos de la aplicación al directorio de trabajo del contenedor
+# Copiar los archivos de configuración de Maven y las dependencias
+COPY pom.xml .
 COPY src ./src
 
-# Instalar las dependencias de la aplicación (descargar las dependencias) y Compilar la aplicación
-RUN mvn dependency:resolve && mvn package
+# Compilar la aplicación y empaquetarla en un archivo JAR
+RUN mvn clean package -DskipTests
 
-# Exponer el puerto que la aplicación usa
+# Etapa 2: Creación de la imagen de producción
+FROM openjdk:17-jdk-alpine
+
+# Establecer el directorio de trabajo
+WORKDIR /app
+
+# Copiar el archivo JAR desde la etapa de construcción
+COPY --from=builder /app/target/*.jar app.jar
+
+# Exponer el puerto que la aplicación utiliza
 EXPOSE 8080
 
-# Comando para ejecutar la aplicación en modo desarrollo
-CMD ["mvn", "spring-boot:run"]
+# Comando para ejecutar la aplicación
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]

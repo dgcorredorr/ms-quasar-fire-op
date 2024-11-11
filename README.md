@@ -5,7 +5,7 @@
 # **Template Spring Boot Webflux**
 
 ## **Descripción**
-Microservicio desarrollado en Java con el framework Spring Boot 3 y base de datos MongoDB. Microservicio base de la fábrica de software FullSpectrum Tech.
+Microservicio desarrollado en Java con el framework Spring Boot 3 y base de datos MongoDB. Microservicio base.
 
 ## **Pre-requisitos**
 Para clonar y ejecutar esta aplicación, necesitará [Git](https://git-scm.com), [Java 17.0.11](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html), [Maven](https://maven.apache.org/download.cgi) y [Docker](https://docs.docker.com/engine/install/) instalados en su computadora. 
@@ -14,7 +14,7 @@ Desde su línea de comando:
 
 ```bash
 # Clonar repositorio
-$ git clone https://github.com/fspectrum/ms-template-spring-webflux
+$ git clone https://github.com/dgcorredorr/ms-template-spring-webflux
 
 # Entrar al repositorio local
 $ cd ms-template-spring-webflux
@@ -31,7 +31,7 @@ $ docker compose -f "compose.yaml" up -d --build
 
 ```bash
 # Correr aplicación en modo desarrollo
-$ mvn spring-boot:run
+$ mvn clean spring-boot:run
 ```
 
 Luego podrá acceder desde el [navegador](http://localhost:8080/swagger-ui.html) para validar que se visualice correctamente la documentación de Swagger del proyecto.
@@ -72,4 +72,4 @@ Los diferentes autores y encargados de cada operación de la aplicación para in
 
 | Operación             | Autor                  | Correo                    |
 | --------------------- |------------------------|---------------------------|
-| General               | David Corredor Ramírez | david.corredor@fspectrum.tech |
+| General               | David Corredor Ramírez | dgcorredorr@gmail.com     |

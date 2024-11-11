@@ -1,0 +1,48 @@
+[{
+  "_id": {
+    "$oid": "66aad4ebc4d8f128bdd044c8"
+  },
+  "id": "DEFAULT_ERROR",
+  "description": "Error interno del servicio",
+  "message": "Se presento un error interno por parte del servicio."
+},
+{
+  "_id": {
+    "$oid": "66aad4ebc4d8f128bdd044c9"
+  },
+  "id": "VALIDATION_FIELD_ERROR",
+  "description": "Error validación de campos obligatorios",
+  "message": "Error validación de campos obligatorios."
+},
+{
+  "_id": {
+    "$oid": "66aad4ebc4d8f128bdd044ca"
+  },
+  "id": "DEFAULT_SUCCESS",
+  "description": "Proceso ejecutado correctamente.",
+  "message": "Proceso ejecutado correctamente."
+},
+{
+  "_id": {
+    "$oid": "66aad4ebc4d8f128bdd044cb"
+  },
+  "id": "MESSAGE_NOT_FOUND",
+  "description": "Mensaje no encontrado",
+  "message": "El mensaje no se encuentra cargado en el servicio"
+},
+{
+  "_id": {
+    "$oid": "66aad4ebc4d8f128bdd044cc"
+  },
+  "id": "PARAM_NOT_FOUND",
+  "description": "Parámetro no encontrado en base de datos.",
+  "message": "Parámetro no encontrado en base de datos."
+},
+{
+  "_id": {
+    "$oid": "66aad4ebc4d8f128bdd044ce"
+  },
+  "id": "NO_CREDENTIALS",
+  "description": "Error validación de credenciales.",
+  "message": "Usuario y contraseña requeridos."
+}]

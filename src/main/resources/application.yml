@@ -1,7 +1,58 @@
+app:
+  description: ${APP_DESCRIPTION:Microservicio base}
+  name: ${APP_NAME:Microservicio Template Base}
+  version: ${APP_VERSION:1.0.0-SNAPSHOT}
+  loglevel: ${APP_LOGLEVEL:ALL}
 spring:
-  config:
-    import: ${CONFIG_SERVER:optional:configserver:http://localhost:8888}
-  cloud:
-    config:
-      name: ms-template
-      profile: dev
+  application:
+    name: ${SPRING_APPLICATION_NAME:ms-template}
+  data:
+    mongodb:
+      uri: ${MONGO:mongodb://localhost:27017/DBTemplateSpringBoot_DE}
+      auto-index-creation: ${MONGO_AUTO_INDEX_CREATION:true}
+api:
+  context-path: ${API_CONTEXT_PATH:api}
+  version: ${API_VERSION:V1}
+  controller:
+    mock: ${API_CONTROLLER_MOCK:mock}
+server:
+  port: ${SERVER_PORT:8081}
+springdoc:
+  api-docs:
+    enabled: ${ENABLE_SWAGGER:true}
+  swagger-ui:
+    enabled: ${ENABLE_SWAGGER:true}
+    path: /
+    disable-swagger-default-url: true
+mock:
+  json:
+    path: ${MOCK_JSON_PATH:/api-doc-mock.json}
+logging:
+  level:
+    org:
+      mongodb:
+        driver: false
+elastic:
+  apm:
+    service-name: ${ELASTIC_APM_SERVICE_NAME:ms-template}
+    enabled: ${ELASTIC_APM_ENABLED:true}
+    server-url: ${ELASTIC_APM_SERVER_URL:http://localhost:8200}
+    capture-body: ${ELASTIC_APM_CAPTURE_BODY:all}
+    capture-headers: ${ELASTIC_APM_CAPTURE_HEADERS:true}
+    environment: ${ELASTIC_APM_ENVIRONMENT:meli-challenge-dev}
+    application-packages: ${ELASTIC_APM_APPLICATION_PACKAGES:com.meli}
+    log-level: ${ELASTIC_APM_LOG_LEVEL:INFO}
+    cloud_provider: "none"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+  elastic:
+    metrics:
+      export:
+        enabled: true
+        host: ${ELASTIC_SERVER_URL:http://localhost:9200}
