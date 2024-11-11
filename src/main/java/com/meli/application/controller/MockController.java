@@ -108,7 +108,7 @@ public class MockController {
                                         }
                                         """))) @RequestBody Map<String, Object> updatedMock) {
                 // Lógica para actualizar el ejemplo
-                String message = messageService.mapMessage(MessageMapping.DEFAULT_SUCCESS);
+                String message = messageService.mapMessage(MessageMapping.DEFAULT_SUCCESS.toString());
                 return Mono.just(ResponseEntity.ok(message));
         }
 

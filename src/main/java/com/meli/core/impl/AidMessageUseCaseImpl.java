@@ -1,13 +1,16 @@
 package com.meli.core.impl;
 
 import java.util.Arrays;
-
 import org.springframework.stereotype.Service;
-
+import com.meli.common.exception.ServiceException;
+import com.meli.common.utils.tasks.Task;
+import com.meli.common.utils.tasks.Task.Origin;
 import com.meli.core.AidMessageUseCase;
 
 @Service
 public class AidMessageUseCaseImpl implements AidMessageUseCase {
+
+    private static final Task task = new Task("DECODE_MESSAGE", "Decodificación del mensaje");
 
     @Override
     public String getMessage(String[][] messages) {
@@ -45,6 +48,15 @@ public class AidMessageUseCaseImpl implements AidMessageUseCase {
                 }
             }
         }
-        return String.join(" ", result).trim();
+        String decodedMessage = String.join(" ", result).trim();
+        decodedMessage = decodedMessage.replaceAll("null", "").trim();
+        
+        // Check if there are any null values in the middle of the message
+        if (decodedMessage.contains("  ") || decodedMessage.contains("null") || decodedMessage.isEmpty()) {
+            task.setOrigin(Origin.builder().originClass("AidMessageUseCaseImpl").originMethod("decodeMessage").build());
+            throw new ServiceException("Message cannot be decoded", null, task, null, null);
+        }
+        
+        return decodedMessage;
     }
 }

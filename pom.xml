@@ -11,10 +11,10 @@
 	</properties>
 
 	<parent>
-        <groupId>com.meli</groupId>
-        <artifactId>ms-parent-spring-webflux</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-    </parent>
+		<groupId>com.meli</groupId>
+		<artifactId>ms-parent-spring-webflux</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
 
 	<groupId>com.meli</groupId>
 	<artifactId>ms-template-spring-webflux</artifactId>
