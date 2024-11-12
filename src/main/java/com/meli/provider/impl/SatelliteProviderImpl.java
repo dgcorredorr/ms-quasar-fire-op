@@ -1,5 +1,6 @@
 package com.meli.provider.impl;
 
+import com.meli.common.configuration.GeneralConfig;
 import com.meli.core.entity.Satellite;
 import com.meli.provider.SatelliteProvider;
 import com.meli.provider.mapper.SatelliteMapper;
@@ -30,11 +31,16 @@ public class SatelliteProviderImpl implements SatelliteProvider {
     @PostConstruct
     @CaptureSpan("initSatelliteCache")
     public void init() {
-        this.satelliteCache.clear();
         satelliteRepository.findAll()
-                .flatMap(satelliteMapper::toEntity)
-                .doOnNext(satelliteCache::add)
-                .subscribe();
+            .collectList()
+            .flatMapMany(Flux::fromIterable)
+            .flatMap(satelliteMapper::toEntity)
+            .collectList()
+            .doOnNext(satellites -> {
+                satelliteCache.clear();
+                satelliteCache.addAll(satellites);
+            })
+            .subscribe();
     }
 
     @Override
@@ -73,8 +79,31 @@ public class SatelliteProviderImpl implements SatelliteProvider {
                 .flatMap(existingSatellite -> {
                     existingSatellite.setMessage(satellite.getMessage());
                     existingSatellite.setDistance(satellite.getDistance());
+                    existingSatellite.setUpdatedBy(GeneralConfig.getAppId());
                     return satelliteRepository.save(existingSatellite);
                 })
-                .flatMap(satelliteMapper::toEntity);
+                .flatMap(satelliteMapper::toEntity)
+                .doOnNext(updatedSatellite -> {
+                    satelliteCache.removeIf(s -> s.getName().equals(updatedSatellite.getName()));
+                    satelliteCache.add(updatedSatellite);
+                });
+    }
+
+    @Override
+    @CaptureSpan("updateSatellitesBatch")
+    public Flux<Satellite> updateSatellitesBatch(List<Satellite> satellites) {
+        return Flux.fromIterable(satellites)
+                .flatMap(satellite -> satelliteRepository.findByName(satellite.getName())
+                        .flatMap(existingSatellite -> {
+                            existingSatellite.setMessage(satellite.getMessage());
+                            existingSatellite.setDistance(satellite.getDistance());
+                            existingSatellite.setUpdatedBy(GeneralConfig.getAppId());
+                            return satelliteRepository.save(existingSatellite);
+                        })
+                        .flatMap(satelliteMapper::toEntity))
+                        .doOnNext(updatedSatellite -> {
+                            satelliteCache.removeIf(s -> s.getName().equals(updatedSatellite.getName()));
+                            satelliteCache.add(updatedSatellite);
+                        });
     }
 }

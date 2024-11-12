@@ -1,6 +1,8 @@
 package com.meli.provider.repository;
 
 import com.meli.provider.model.SatelliteModel;
+
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
@@ -10,7 +12,7 @@ import reactor.core.publisher.Mono;
  * Repositorio para gestionar operaciones con SatelliteModel en una base de datos MongoDB de manera reactiva.
  */
 @Repository
-public interface SatelliteRepository extends ReactiveMongoRepository<SatelliteModel, String> {
+public interface SatelliteRepository extends ReactiveMongoRepository<SatelliteModel, ObjectId> {
     
     /**
      * Encuentra una instancia de SatelliteModel con el nombre dado.

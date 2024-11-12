@@ -5,6 +5,9 @@ import com.meli.core.entity.Satellite;
 import com.meli.provider.SatelliteProvider;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -34,5 +37,10 @@ public class SatelliteUseCaseImpl implements SatelliteUseCase {
     @Override
     public Mono<Satellite> updateSatellite(Satellite satellite) {
         return satelliteProvider.updateSatellite(satellite);
+    }
+
+    @Override
+    public Flux<Satellite> updateSatellitesBatch(List<Satellite> satellites) {
+        return satelliteProvider.updateSatellitesBatch(satellites);
     }
 }

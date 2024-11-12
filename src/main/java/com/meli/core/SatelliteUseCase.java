@@ -1,5 +1,7 @@
 package com.meli.core;
 
+import java.util.List;
+
 import com.meli.core.entity.Satellite;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -38,4 +40,12 @@ public interface SatelliteUseCase {
      * @return Un Mono que contiene el satélite guardado.
      */
     Mono<Satellite> updateSatellite(Satellite satellite);
+
+    /**
+     * Guarda un lote de satélites de manera reactiva.
+     *
+     * @param satellites La lista de satélites a guardar.
+     * @return Un Flux que contiene la lista de satélites guardados.
+     */
+    Flux<Satellite> updateSatellitesBatch(List<Satellite> satellites);
 }

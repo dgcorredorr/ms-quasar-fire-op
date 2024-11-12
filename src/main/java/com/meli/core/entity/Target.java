@@ -6,6 +6,6 @@ import lombok.Data;
 @Builder
 @Data
 public class Target {
-    private Point location;
+    private Point position;
     private String message;
 }

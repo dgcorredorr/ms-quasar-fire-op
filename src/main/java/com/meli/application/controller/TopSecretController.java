@@ -4,9 +4,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.meli.application.dto.SatelliteInfoDto;
+import com.meli.application.dto.TargetDto;
 import com.meli.application.dto.TopSecretPostRequestDto;
 import com.meli.application.service.TopSecretService;
-import com.meli.core.entity.Target;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -43,7 +43,7 @@ public class TopSecretController {
                 """)))
     })
     @PostMapping("/topsecret")
-    public Mono<ResponseEntity<Target>> getTarget(@Valid @RequestBody TopSecretPostRequestDto requestBody) {
+    public Mono<ResponseEntity<TargetDto>> getTarget(@Valid @RequestBody TopSecretPostRequestDto requestBody) {
         return topSecretService.getTarget(requestBody.getSatellites().toArray(new SatelliteInfoDto[0]))
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
@@ -86,7 +86,7 @@ public class TopSecretController {
                 """)))
     })
     @GetMapping("/topsecret_split")
-    public Mono<ResponseEntity<Target>> getTarget() {
+    public Mono<ResponseEntity<TargetDto>> getTarget() {
         return topSecretService.getTarget()
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());

@@ -1,7 +1,7 @@
 package com.meli.application.service;
 
 import com.meli.application.dto.SatelliteInfoDto;
-import com.meli.core.entity.Target;
+import com.meli.application.dto.TargetDto;
 
 import reactor.core.publisher.Mono;
 
@@ -13,7 +13,7 @@ public interface TopSecretService {
      * @param satellites Array de satélites.
      * @return El objetivo.
      */
-    Mono<Target> getTarget(SatelliteInfoDto[] satellites);
+    Mono<TargetDto> getTarget(SatelliteInfoDto[] satellites);
 
     /**
      * Guarda la información de un satélite.
@@ -27,5 +27,5 @@ public interface TopSecretService {
      *
      * @return El objetivo.
      */
-    Mono<Target> getTarget();
+    Mono<TargetDto> getTarget();
 }
