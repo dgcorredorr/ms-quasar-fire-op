@@ -12,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import com.meli.application.service.MessageService;
-import com.meli.application.service.ParamService;
 import com.meli.common.exception.ServiceException;
 import com.meli.core.entity.Point;
 import com.meli.core.entity.Satellite;
@@ -35,24 +34,16 @@ class LocationUseCaseImplTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        locationUseCaseImpl = new LocationUseCaseImpl(satelliteProvider, messageService);
+        locationUseCaseImpl = new LocationUseCaseImpl(messageService);
     }
 
     @Test
     void testGetLocation() {
         // Arrange
-        Satellite satellite1 = Satellite.builder().name("kenobi").distance(100.0).location(null).build();
-        Satellite satellite2 = Satellite.builder().name("skywalker").distance(115.5).location(null).build();
-        Satellite satellite3 = Satellite.builder().name("sato").distance(142.7).location(null).build();
+        Satellite satellite1 = Satellite.builder().name("kenobi").distance(100.0).location(Point.builder().x(-500).y(-200).build()).build();
+        Satellite satellite2 = Satellite.builder().name("skywalker").distance(115.5).location(Point.builder().x(100).y(-100).build()).build();
+        Satellite satellite3 = Satellite.builder().name("sato").distance(142.7).location(Point.builder().x(500).y(100).build()).build();
         Satellite[] satellites = { satellite1, satellite2, satellite3 };
-
-        List<Satellite> satelliteLocations = List.of(
-            Satellite.builder().name("kenobi").location(Point.builder().x(-500).y(-200).build()).build(),
-            Satellite.builder().name("skywalker").location(Point.builder().x(100).y(-100).build()).build(),
-            Satellite.builder().name("sato").location(Point.builder().x(500).y(100).build()).build()
-        );
-
-        when(satelliteProvider.getSatellites()).thenReturn(Flux.fromIterable(satelliteLocations));
 
         // Act
         Point result = locationUseCaseImpl.getLocation(satellites);

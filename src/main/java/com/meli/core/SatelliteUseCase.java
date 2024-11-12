@@ -1,13 +1,13 @@
-package com.meli.provider;
+package com.meli.core;
 
 import com.meli.core.entity.Satellite;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * Proveedor de satélites utilizado para interactuar con el almacenamiento de satélites.
+ * Caso de uso para la gestión de satélites.
  */
-public interface SatelliteProvider {
+public interface SatelliteUseCase {
 
     /**
      * Carga los satélites disponibles de manera reactiva.
@@ -30,14 +30,6 @@ public interface SatelliteProvider {
      * @return Un Mono que contiene el satélite encontrado o vacío si no existe.
      */
     Mono<Satellite> getSatellite(String name);
-
-    /**
-     * Mapea un satélite por su nombre.
-     *
-     * @param name El nombre del satélite a mapear.
-     * @return El satélite mapeado o null si no se encuentra.
-     */
-    Satellite mapSatellite(String name);
 
     /**
      * Guarda un satélite de manera reactiva.

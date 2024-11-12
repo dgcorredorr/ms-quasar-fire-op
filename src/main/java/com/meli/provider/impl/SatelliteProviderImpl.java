@@ -65,4 +65,16 @@ public class SatelliteProviderImpl implements SatelliteProvider {
                 .findFirst()
                 .orElse(null);
     }
+
+    @Override
+    @CaptureSpan("updateSatellite")
+    public Mono<Satellite> updateSatellite(Satellite satellite) {
+        return satelliteRepository.findByName(satellite.getName())
+                .flatMap(existingSatellite -> {
+                    existingSatellite.setMessage(satellite.getMessage());
+                    existingSatellite.setDistance(satellite.getDistance());
+                    return satelliteRepository.save(existingSatellite);
+                })
+                .flatMap(satelliteMapper::toEntity);
+    }
 }
