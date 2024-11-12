@@ -6,25 +6,25 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.meli.application.service.MessageService;
-import com.meli.application.service.ParamService;
 import com.meli.common.exception.ServiceException;
 import com.meli.common.utils.tasks.Task;
 import com.meli.common.utils.tasks.Task.Origin;
 import com.meli.core.LocationUseCase;
 import com.meli.core.entity.Point;
 import com.meli.core.entity.Satellite;
+import com.meli.provider.SatelliteProvider;
 
 @Service
 public class LocationUseCaseImpl implements LocationUseCase {
 
     private static final Task task = new Task("GET_LOCATION", "Cálculo de la ubicación");
 
-    private final ParamService paramService;
+    private final SatelliteProvider satelliteProvider;
 
     private final MessageService messageService;
 
-    public LocationUseCaseImpl(ParamService paramService, MessageService messageService) {
-        this.paramService = paramService;
+    public LocationUseCaseImpl(SatelliteProvider satelliteProvider, MessageService messageService) {
+        this.satelliteProvider = satelliteProvider;
         this.messageService = messageService;
     }
 
@@ -34,20 +34,18 @@ public class LocationUseCaseImpl implements LocationUseCase {
         task.setOrigin(Origin.builder().originClass("LocationUseCaseImpl").originMethod("getLocation").build());
 
         if (satellites == null || satellites.length < 3) {
-            throw new ServiceException(messageService.mapMessage("INSUFFICIENT_SATELLITES"), null, task,
-                    null, satellites);
+            throw new ServiceException(messageService.mapMessage("INSUFFICIENT_SATELLITES"), null, task, null, satellites);
         }
 
         for (int i = 0; i < satellites.length; i++) {
             for (int j = i + 1; j < satellites.length; j++) {
-            if (satellites[i].getName().equals(satellites[j].getName())) {
-                throw new ServiceException(messageService.mapMessage("DUPLICATE_SATELLITE_NAMES"), null, task, null, satellites);
-            }
+                if (satellites[i].getName().equals(satellites[j].getName())) {
+                    throw new ServiceException(messageService.mapMessage("DUPLICATE_SATELLITE_NAMES"), null, task, null, satellites);
+                }
             }
         }
 
-        List<Satellite> satelliteLocationsParam = new ArrayList<>(
-                paramService.mapParamList("SATELLITE_LOCATIONS", Satellite.class));
+        List<Satellite> satelliteLocationsParam = satelliteProvider.getSatellites().collectList().block();
         for (Satellite satellite : satellites) {
             for (Satellite satellitePosition : new ArrayList<>(satelliteLocationsParam)) {
                 if (satellite.getName().equals(satellitePosition.getName())) {
@@ -57,13 +55,11 @@ public class LocationUseCaseImpl implements LocationUseCase {
                 }
             }
             if (satellite.getLocation() == null || satellite.getDistance() == null) {
-                throw new ServiceException(messageService.mapMessage("INSUFFICIENT_INFORMATION"), null, task, null,
-                        satellites);
+                throw new ServiceException(messageService.mapMessage("INSUFFICIENT_INFORMATION"), null, task, null, satellites);
             }
         }
 
         double[] position = this.calculatePosition(List.of(satellites));
-
         return Point.builder().x(position[0]).y(position[1]).build();
     }
 

@@ -51,7 +51,6 @@ public class AidMessageUseCaseImpl implements AidMessageUseCase {
         String decodedMessage = String.join(" ", result).trim();
         decodedMessage = decodedMessage.replaceAll("null", "").trim();
         
-        // Check if there are any null values in the middle of the message
         if (decodedMessage.contains("  ") || decodedMessage.contains("null") || decodedMessage.isEmpty()) {
             task.setOrigin(Origin.builder().originClass("AidMessageUseCaseImpl").originMethod("decodeMessage").build());
             throw new ServiceException("Message cannot be decoded", null, task, null, null);

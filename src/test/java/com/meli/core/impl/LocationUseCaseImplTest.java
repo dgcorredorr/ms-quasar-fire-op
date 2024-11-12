@@ -16,11 +16,14 @@ import com.meli.application.service.ParamService;
 import com.meli.common.exception.ServiceException;
 import com.meli.core.entity.Point;
 import com.meli.core.entity.Satellite;
+import com.meli.provider.SatelliteProvider;
+
+import reactor.core.publisher.Flux;
 
 class LocationUseCaseImplTest {
 
     @Mock
-    private ParamService paramService;
+    private SatelliteProvider satelliteProvider;
 
     @Mock
     private MessageService messageService;
@@ -32,7 +35,7 @@ class LocationUseCaseImplTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        locationUseCaseImpl = new LocationUseCaseImpl(paramService, messageService);
+        locationUseCaseImpl = new LocationUseCaseImpl(satelliteProvider, messageService);
     }
 
     @Test
@@ -43,13 +46,13 @@ class LocationUseCaseImplTest {
         Satellite satellite3 = Satellite.builder().name("sato").distance(142.7).location(null).build();
         Satellite[] satellites = { satellite1, satellite2, satellite3 };
 
-        List<Satellite> satelliteLocationsParam = List.of(
+        List<Satellite> satelliteLocations = List.of(
             Satellite.builder().name("kenobi").location(Point.builder().x(-500).y(-200).build()).build(),
             Satellite.builder().name("skywalker").location(Point.builder().x(100).y(-100).build()).build(),
             Satellite.builder().name("sato").location(Point.builder().x(500).y(100).build()).build()
         );
 
-        when(paramService.mapParamList("SATELLITE_LOCATIONS", Satellite.class)).thenReturn(satelliteLocationsParam);
+        when(satelliteProvider.getSatellites()).thenReturn(Flux.fromIterable(satelliteLocations));
 
         // Act
         Point result = locationUseCaseImpl.getLocation(satellites);
@@ -67,7 +70,7 @@ class LocationUseCaseImplTest {
         Satellite satellite3 = Satellite.builder().name("sat3").build();
         Satellite[] satellites = { satellite1, satellite2, satellite3 };
 
-        List<Satellite> satelliteLocationsParam = List.of(
+        List<Satellite> satelliteLocations = List.of(
             Satellite.builder().name("sat1").location(Point.builder().x(0).y(0).build()).build(),
             Satellite.builder().name("sat2").location(Point.builder().x(100).y(0).build()).build(),
             Satellite.builder().name("sat3").location(Point.builder().x(50).y(100).build()).build()
@@ -75,7 +78,7 @@ class LocationUseCaseImplTest {
 
         String exceptionMessage = "Información insuficiente.";
 
-        when(paramService.mapParamList("SATELLITE_LOCATIONS", Satellite.class)).thenReturn(satelliteLocationsParam);
+        when(satelliteProvider.getSatellites()).thenReturn(Flux.fromIterable(satelliteLocations));
         when(messageService.mapMessage("INSUFFICIENT_INFORMATION")).thenReturn(exceptionMessage);
 
         // Act & Assert
@@ -89,13 +92,13 @@ class LocationUseCaseImplTest {
         Satellite satellite1 = Satellite.builder().name("sat1").distance(100.0).build();
         Satellite[] satellites = { satellite1 };
 
-        List<Satellite> satelliteLocationsParam = List.of(
+        List<Satellite> satelliteLocations = List.of(
             Satellite.builder().name("sat1").location(Point.builder().x(0).y(0).build()).build()
         );
 
         String exceptionMessage = "Se requieren al menos tres satélites para calcular la ubicación.";
 
-        when(paramService.mapParamList("SATELLITE_LOCATIONS", Satellite.class)).thenReturn(satelliteLocationsParam);
+        when(satelliteProvider.getSatellites()).thenReturn(Flux.fromIterable(satelliteLocations));
         when(messageService.mapMessage("INSUFFICIENT_SATELLITES")).thenReturn(exceptionMessage);
 
         // Act & Assert
@@ -111,7 +114,7 @@ class LocationUseCaseImplTest {
         Satellite satellite3 = Satellite.builder().name("sat1").distance(100.0).build();
         Satellite[] satellites = { satellite1, satellite2, satellite3 };
 
-        List<Satellite> satelliteLocationsParam = List.of(
+        List<Satellite> satelliteLocations = List.of(
             Satellite.builder().name("sat1").location(Point.builder().x(0).y(0).build()).build(),
             Satellite.builder().name("sat1").location(Point.builder().x(0).y(0).build()).build(),
             Satellite.builder().name("sat1").location(Point.builder().x(0).y(0).build()).build()
@@ -119,7 +122,7 @@ class LocationUseCaseImplTest {
 
         String exceptionMessage = "Los nombres de los satélites no pueden ser idénticos.";
 
-        when(paramService.mapParamList("SATELLITE_LOCATIONS", Satellite.class)).thenReturn(satelliteLocationsParam);
+        when(satelliteProvider.getSatellites()).thenReturn(Flux.fromIterable(satelliteLocations));
         when(messageService.mapMessage("DUPLICATE_SATELLITE_NAMES")).thenReturn(exceptionMessage);
 
         // Act & Assert
@@ -135,7 +138,7 @@ class LocationUseCaseImplTest {
         Satellite satellite3 = Satellite.builder().name("sat3").distance(100.0).build();
         Satellite[] satellites = { satellite1, satellite2, satellite3 };
 
-        List<Satellite> satelliteLocationsParam = List.of(
+        List<Satellite> satelliteLocations = List.of(
             Satellite.builder().name("sat1").location(Point.builder().x(0).y(0).build()).build(),
             Satellite.builder().name("sat2").location(Point.builder().x(0).y(0).build()).build(),
             Satellite.builder().name("sat3").location(Point.builder().x(0).y(0).build()).build()
@@ -143,7 +146,7 @@ class LocationUseCaseImplTest {
 
         String exceptionMessage = "Singularidad detectada, las ubicaciones de los satélites no pueden ser idénticas.";
 
-        when(paramService.mapParamList("SATELLITE_LOCATIONS", Satellite.class)).thenReturn(satelliteLocationsParam);
+        when(satelliteProvider.getSatellites()).thenReturn(Flux.fromIterable(satelliteLocations));
         when(messageService.mapMessage("IDENTICAL_SATELLITE_POSITIONS")).thenReturn(exceptionMessage);
 
         // Act & Assert
@@ -156,11 +159,11 @@ class LocationUseCaseImplTest {
         // Arrange
         Satellite[] satellites = {};
 
-        List<Satellite> satelliteLocationsParam = List.of();
+        List<Satellite> satelliteLocations = List.of();
 
         String exceptionMessage = "Se requieren al menos tres satélites para calcular la ubicación.";
 
-        when(paramService.mapParamList("SATELLITE_LOCATIONS", Satellite.class)).thenReturn(satelliteLocationsParam);
+        when(satelliteProvider.getSatellites()).thenReturn(Flux.fromIterable(satelliteLocations));
         when(messageService.mapMessage("INSUFFICIENT_SATELLITES")).thenReturn(exceptionMessage);
 
         // Act & Assert
@@ -173,11 +176,11 @@ class LocationUseCaseImplTest {
         // Arrange
         Satellite[] satellites = null;
 
-        List<Satellite> satelliteLocationsParam = List.of();
+        List<Satellite> satelliteLocations = List.of();
         
         String exceptionMessage = "Se requieren al menos tres satélites para calcular la ubicación.";
 
-        when(paramService.mapParamList("SATELLITE_LOCATIONS", Satellite.class)).thenReturn(satelliteLocationsParam);
+        when(satelliteProvider.getSatellites()).thenReturn(Flux.fromIterable(satelliteLocations));
         when(messageService.mapMessage("INSUFFICIENT_SATELLITES")).thenReturn(exceptionMessage);
 
         // Act & Assert
