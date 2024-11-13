@@ -51,7 +51,9 @@ public class TopSecretServiceImpl implements TopSecretService {
                     updateSatelliteLocations(satellites, satelliteLocations);
                     Satellite[] satellitesArray = satelliteLocations.toArray(new Satellite[0]);
                     validateSatellites(satellitesArray);
-                    return processSatellites(satellitesArray);
+                    return processSatellites(satellitesArray).doOnSuccess(target -> {
+                        satelliteUseCase.updateSatellitesBatch(satelliteLocations).subscribe();
+                    });
                 });
     }
 
