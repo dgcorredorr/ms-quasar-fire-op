@@ -9,7 +9,6 @@ import com.meli.provider.repository.SatelliteRepository;
 import co.elastic.apm.api.ElasticApm;
 import co.elastic.apm.api.Span;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
