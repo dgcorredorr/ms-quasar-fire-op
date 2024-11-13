@@ -1,14 +1,21 @@
 <p align="center">
-  <a href="https://spring.io/projects/spring-boot" target="blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Spring_Framework_Logo_2018.svg/2560px-Spring_Framework_Logo_2018.svg.png" width="320" alt="Spring Boot Logo" /></a>
+  <a href="https://spring.io/projects/spring-boot" target="blank"><img src="https://static-00.iconduck.com/assets.00/spring-icon-1024x1023-ljxx8bf7.png" height="120" alt="Spring Boot Logo" /></a>
+  <span style="display:inline-block; width: 50px;"></span>
+  <a href="https://mercadolibre.com/" target="blank"><img src="https://companieslogo.com/img/orig/MELI-ec0c0e4f.png?t=1720244492" height="125" alt="Rebel Alliance Logo" /></a>
+  <span style="display:inline-block; width: 50px;"></span>
+  <a href="https://www.starwars.com" target="blank"><img src="https://www.pngkey.com/png/full/297-2971509_star-wars-rebel-symbol-png.png" height="125" alt="Rebel Alliance Logo" /></a>
 </p>
 
-# **Template Spring Boot Webflux**
+# **Microservicio Operación Fuego de Quásar**
 
 ## **Descripción**
-Microservicio desarrollado en Java con el framework Spring Boot 3 y base de datos MongoDB. Microservicio base.
+El microservicio "Operación Fuego de Quásar" es una solución desarrollada en Java utilizando el framework Spring Boot 3 y MongoDB como base de datos. Este microservicio se encarga de procesar y analizar la información recibida de varios satélites para determinar la posición y el mensaje original emitido por una fuente desconocida. Implementa un enfoque reactivo utilizando Spring WebFlux para manejar de manera eficiente las solicitudes concurrentes y proporcionar respuestas rápidas.
 
+El microservicio incluye capacidades avanzadas de monitoreo y trazabilidad mediante la integración con Elastic APM, lo que permite registrar errores y realizar un seguimiento detallado de las operaciones. Además, utiliza MongoDB no solo como base de datos principal, sino también para el registro de errores y la trazabilidad de las operaciones.
+
+Para mejorar el rendimiento, el microservicio implementa un manejo de caché en las colecciones de MongoDB, lo que permite reducir la latencia y mejorar la eficiencia en el acceso a los datos. También cuenta con un manejo centralizado de errores y el uso de interceptores para guardar la trazabilidad de las operaciones.
 ## **Pre-requisitos**
-Para clonar y ejecutar esta aplicación, necesitará [Git](https://git-scm.com), [Java 17.0.11](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html), [Maven](https://maven.apache.org/download.cgi) y [Docker](https://docs.docker.com/engine/install/) instalados en su computadora. 
+Para clonar y ejecutar esta aplicación, necesitará [Git](https://git-scm.com), [Java 17.0.11](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html), [Maven](https://maven.apache.org/download.cgi) (Opcional) y [Docker](https://docs.docker.com/engine/install/) instalados en su computadora. 
 
 Desde su línea de comando:
 
@@ -20,7 +27,7 @@ $ git clone https://github.com/dgcorredorr/ms-template-spring-webflux
 $ cd ms-template-spring-webflux
 
 # Instalar dependencias
-$ mvn install
+$ ./mvnw clean install
 ```
 
 **NOTA: Antes de correr el proyecto, asegúrese de ejecutar con Docker el archivo compose.yaml.**
@@ -31,10 +38,10 @@ $ docker compose -f "compose.yaml" up -d --build
 
 ```bash
 # Correr aplicación en modo desarrollo
-$ mvn clean spring-boot:run
+$ ./mvnw clean spring-boot:run
 ```
 
-Luego podrá acceder desde el [navegador](http://localhost:8080/swagger-ui.html) para validar que se visualice correctamente la documentación de Swagger del proyecto.
+Luego podrá acceder desde el [navegador](http://localhost:8081/) para validar que se visualice correctamente la documentación de Swagger del proyecto.
 
 ## **Ejecutar pruebas unitarias y SonarQube**
 
