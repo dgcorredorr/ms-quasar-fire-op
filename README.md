@@ -1,9 +1,6 @@
 <p align="center">
-  <a href="https://spring.io/projects/spring-boot" target="blank"><img src="https://static-00.iconduck.com/assets.00/spring-icon-1024x1023-ljxx8bf7.png" height="120" alt="Spring Boot Logo" /></a>
   <span style="display:inline-block; width: 50px;"></span>
-  <a href="https://mercadolibre.com/" target="blank"><img src="https://companieslogo.com/img/orig/MELI-ec0c0e4f.png?t=1720244492" height="125" alt="Rebel Alliance Logo" /></a>
-  <span style="display:inline-block; width: 50px;"></span>
-  <a href="https://www.starwars.com" target="blank"><img src="https://www.pngkey.com/png/full/297-2971509_star-wars-rebel-symbol-png.png" height="125" alt="Rebel Alliance Logo" /></a>
+  <a href="#" target="blank"><img src="https://www.pngkey.com/png/full/297-2971509_star-wars-rebel-symbol-png.png" height="125" alt="Rebel Alliance Logo" /></a>
 </p>
 
 # **Microservicio Operación Fuego de Quásar**
