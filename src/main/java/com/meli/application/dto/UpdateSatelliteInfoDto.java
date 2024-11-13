@@ -4,6 +4,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -26,12 +27,12 @@ public class UpdateSatelliteInfoDto implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Schema(description = "Distancia al emisor tal cual se recibe en el satélite.")
+    @Schema(description = "Distancia al emisor tal cual se recibe en el satélite.", example = "100.0")
     @NotNull(message = "La distancia no puede ser nula.")
     private Double distance;
 
-    @Schema(description = "El mensaje tal cual es recibido en el satélite.")
+    @Schema(description = "El mensaje tal cual es recibido en el satélite.", example = "[\"este\", \"\", \"\", \"mensaje\", \"\"]")
     @NotNull(message = "El mensaje no puede ser nulo.")
     @NotEmpty(message = "El mensaje no puede estar vacío.")
-    private transient List<String> message;
+    private List<String> message;
 }

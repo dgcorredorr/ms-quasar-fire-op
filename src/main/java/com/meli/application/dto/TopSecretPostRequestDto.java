@@ -26,7 +26,7 @@ public class TopSecretPostRequestDto implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Schema(description = "Lista de satélites con su información.")
+    @Schema(description = "Lista de satélites con su información.", example = "[{name: \"kenobi\", distance: 100.0, message: [\"este\", \"\", \"\", \"mensaje\", \"\"]}, {name: \"skywalker\", distance: 115.5, message: [\"\", \"es\", \"\", \"\", \"secreto\"]}, {name: \"sato\", distance: 142.7, message: [\"este\", \"\", \"un\", \"\", \"\"]}]")
     @NotNull(message = "La lista de satélites no puede ser nula.")
     @NotEmpty(message = "La lista de satélites no puede estar vacía.")
     @Valid
