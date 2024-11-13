@@ -1,15 +1,14 @@
 package com.meli.application.dto;
 
-import io.swagger.v3.oas.annotations.media.ArraySchema;
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.List;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
-
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.List;
 
 /**
  * Estructura utilizada por el servicio para recibir la información de un satélite.
