@@ -1,5 +1,6 @@
 package com.meli.core.impl;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.meli.application.service.MessageService;
@@ -67,7 +68,12 @@ public class LocationUseCaseImpl implements LocationUseCase {
 
         // Verificar si el determinante de AtA es cero
         if (isSingular(AtA)) {
-            throw new ServiceException(messageService.mapMessage("IDENTICAL_SATELLITE_POSITIONS"), null, task, null,
+            throw new ServiceException(
+                    messageService.mapMessage("IDENTICAL_SATELLITE_POSITIONS"),
+                    HttpStatus.NOT_FOUND,
+                    null,
+                    task,
+                    null,
                     null);
         }
 

@@ -8,19 +8,19 @@ import com.meli.common.utils.log.ServiceLogger;
 import com.meli.common.utils.enums.LogLevel;
 
 @SpringBootApplication
-public class MsTemplateApplication {
+public class MsQuasarFireOpApplication {
 
-	private static ServiceLogger<MsTemplateApplication> logger = new ServiceLogger<>(MsTemplateApplication.class);
+	private static ServiceLogger<MsQuasarFireOpApplication> logger = new ServiceLogger<>(MsQuasarFireOpApplication.class);
 
 	public static void main(String[] args) {
 		long startTime = System.currentTimeMillis();
-		SpringApplication.run(MsTemplateApplication.class, args);
+		SpringApplication.run(MsQuasarFireOpApplication.class, args);
 		long endTime = System.currentTimeMillis();
 		long executionTime = endTime - startTime;
 		String logMessage = GeneralConfig.getAppName() + " | " 
 		+ GeneralConfig.getAppVersion() + " | " 
 		+ GeneralConfig.getAppDescription();
-		MsTemplateApplication.logger.log(logMessage, null, LogLevel.INFO, null, executionTime);
+		MsQuasarFireOpApplication.logger.log(logMessage, null, LogLevel.INFO, null, executionTime);
 	}
 
 }

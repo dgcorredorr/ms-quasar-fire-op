@@ -2,6 +2,7 @@ package com.meli.application.service;
 
 import com.meli.application.dto.SatelliteInfoDto;
 import com.meli.application.dto.TargetDto;
+import com.meli.application.dto.UpdateSatelliteInfoDto;
 
 import reactor.core.publisher.Mono;
 
@@ -19,8 +20,9 @@ public interface TopSecretService {
      * Guarda la información de un satélite.
      *
      * @param satellite El satélite a guardar.
+     * @param satelliteName El nombre del satélite.
      */
-    Mono<Void> updateSatellite(SatelliteInfoDto satellite);
+    Mono<Void> updateSatellite(UpdateSatelliteInfoDto satellite, String satelliteName);
 
     /**
      * Obtiene el objetivo una vez haya información suficiente.

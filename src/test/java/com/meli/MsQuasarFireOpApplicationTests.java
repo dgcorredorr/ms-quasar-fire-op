@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 
-@SpringBootTest(classes = MsTemplateApplication.class)
-class MsTemplateApplicationTests {
+@SpringBootTest(classes = MsQuasarFireOpApplication.class)
+class MsQuasarFireOpApplicationTests {
 
 	private ApplicationContext applicationContext;
 
-	public MsTemplateApplicationTests(ApplicationContext applicationContext) {
+	public MsQuasarFireOpApplicationTests(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
 	}
 

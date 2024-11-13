@@ -1,6 +1,8 @@
 package com.meli.core.impl;
 
 import java.util.Arrays;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.meli.application.service.MessageService;
@@ -29,16 +31,17 @@ public class AidMessageUseCaseImpl implements AidMessageUseCase {
 
     private int findMinLength(String[][] messages) {
         return Arrays.stream(messages)
-                     .mapToInt(arr -> arr.length)
-                     .min()
-                     .orElse(0);
+                .mapToInt(arr -> arr.length)
+                .min()
+                .orElse(0);
     }
 
     private String[][] normalizeMessages(String[][] messages, int minLength) {
         String[][] normalizedMessages = new String[messages.length][minLength];
         for (int i = 0; i < messages.length; i++) {
             if (messages[i].length > minLength) {
-                normalizedMessages[i] = Arrays.copyOfRange(messages[i], messages[i].length - minLength, messages[i].length);
+                normalizedMessages[i] = Arrays.copyOfRange(messages[i], messages[i].length - minLength,
+                        messages[i].length);
             } else {
                 normalizedMessages[i] = messages[i];
             }
@@ -58,12 +61,18 @@ public class AidMessageUseCaseImpl implements AidMessageUseCase {
         }
         String decodedMessage = String.join(" ", result).trim();
         decodedMessage = decodedMessage.replaceAll("null", "").trim();
-        
+
         if (decodedMessage.contains("  ") || decodedMessage.contains("null") || decodedMessage.isEmpty()) {
             task.setOrigin(Origin.builder().originClass("AidMessageUseCaseImpl").originMethod("decodeMessage").build());
-            throw new ServiceException(messageService.mapMessage("MESSAGE_INSUFFICIENT_INFORMATION"), null, task, null, null);
+            throw new ServiceException(
+                    messageService.mapMessage("MESSAGE_INSUFFICIENT_INFORMATION"),
+                    HttpStatus.NOT_FOUND,
+                    null,
+                    task,
+                    null,
+                    null);
         }
-        
+
         return decodedMessage;
     }
 }

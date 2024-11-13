@@ -1,14 +1,14 @@
 app:
-  description: ${APP_DESCRIPTION:Microservicio base}
-  name: ${APP_NAME:Microservicio Template Base}
+  description: ${APP_DESCRIPTION:Microservicio base para la operación Fuego de Quasar. Este microservicio se encarga de recibir señales de diferentes satélites, calcular la posición de una nave espacial y decodificar el mensaje que esta transmite. Utiliza algoritmos de trilateración para determinar la ubicación exacta y técnicas de procesamiento de señales para reconstruir el mensaje original.}
+  name: ${APP_NAME:Microservicio Operación Fuego de Quásar}
   version: ${APP_VERSION:1.0.0-SNAPSHOT}
   loglevel: ${APP_LOGLEVEL:ALL}
 spring:
   application:
-    name: ${SPRING_APPLICATION_NAME:ms-template}
+    name: ${SPRING_APPLICATION_NAME:ms-quasar-fire-operation}
   data:
     mongodb:
-      uri: ${MONGO:mongodb://localhost:27017/DBTemplateSpringBoot_DE}
+      uri: ${MONGO:mongodb://localhost:27017/DBQuasarFireOp_DE}
       auto-index-creation: ${MONGO_AUTO_INDEX_CREATION:true}
 api:
   context-path: ${API_CONTEXT_PATH:api}
@@ -24,9 +24,6 @@ springdoc:
     enabled: ${ENABLE_SWAGGER:true}
     path: /
     disable-swagger-default-url: true
-mock:
-  json:
-    path: ${MOCK_JSON_PATH:/api-doc-mock.json}
 logging:
   level:
     org:
@@ -34,7 +31,7 @@ logging:
         driver: false
 elastic:
   apm:
-    service-name: ${ELASTIC_APM_SERVICE_NAME:ms-template}
+    service-name: ${ELASTIC_APM_SERVICE_NAME:ms-quasar-fire-operation}
     enabled: ${ELASTIC_APM_ENABLED:true}
     server-url: ${ELASTIC_APM_SERVER_URL:http://localhost:8200}
     capture-body: ${ELASTIC_APM_CAPTURE_BODY:all}

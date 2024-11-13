@@ -2,6 +2,7 @@ package com.meli.application.service.impl;
 
 import com.meli.application.dto.SatelliteInfoDto;
 import com.meli.application.dto.TargetDto;
+import com.meli.application.dto.UpdateSatelliteInfoDto;
 import com.meli.application.mapper.SatelliteMapper;
 import com.meli.application.mapper.TargetMapper;
 import com.meli.application.service.MessageService;
@@ -15,6 +16,8 @@ import com.meli.core.AidMessageUseCase;
 import com.meli.common.exception.ServiceException;
 import com.meli.common.utils.tasks.Task;
 import com.meli.common.utils.tasks.Task.Origin;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -67,6 +70,7 @@ public class TopSecretServiceImpl implements TopSecretService {
                 throw new ServiceException(
                         messageService.mapMessage("WRONG_SATELLITE_INFO").replace("SATELLITE_NAME",
                                 satellite.getName()),
+                        HttpStatus.NOT_FOUND,
                         null,
                         getTargetTask,
                         null,
@@ -88,6 +92,7 @@ public class TopSecretServiceImpl implements TopSecretService {
                 throw new ServiceException(
                         messageService.mapMessage("MISSING_SATELLITE_INFO").replace("SATELLITE_NAME",
                                 satellitePosition.getName()),
+                        HttpStatus.NOT_FOUND,
                         null,
                         getTargetTask,
                         null,
@@ -111,29 +116,45 @@ public class TopSecretServiceImpl implements TopSecretService {
 
     private void validateSatellites(Satellite[] satellites) {
         if (satellites == null || satellites.length < 3) {
-            throw new ServiceException(messageService.mapMessage("INSUFFICIENT_SATELLITES"), null, getTargetTask, null,
+            throw new ServiceException(
+                    messageService.mapMessage("INSUFFICIENT_SATELLITES"),
+                    HttpStatus.NOT_FOUND,
+                    null, getTargetTask,
+                    null,
                     null);
         }
 
         for (int i = 0; i < satellites.length; i++) {
             for (int j = i + 1; j < satellites.length; j++) {
                 if (satellites[i].getName().equalsIgnoreCase(satellites[j].getName())) {
-                    throw new ServiceException(messageService.mapMessage("DUPLICATE_SATELLITE_NAMES"),
-                            null, getTargetTask, null, satellites);
+                    throw new ServiceException(
+                            messageService.mapMessage("DUPLICATE_SATELLITE_NAMES"),
+                            HttpStatus.NOT_FOUND,
+                            null,
+                            getTargetTask,
+                            null,
+                            satellites);
                 }
             }
             if (satellites[i].getDistance() == null || satellites[i].getMessage() == null) {
-                throw new ServiceException(messageService.mapMessage("INSUFFICIENT_INFORMATION"), null, getTargetTask,
-                        null, null);
+                throw new ServiceException(
+                        messageService.mapMessage("INSUFFICIENT_INFORMATION"),
+                        HttpStatus.NOT_FOUND,
+                        null,
+                        getTargetTask,
+                        null,
+                        null);
             }
         }
     }
 
     @Override
-    public Mono<Void> updateSatellite(SatelliteInfoDto satellite) {
+    public Mono<Void> updateSatellite(UpdateSatelliteInfoDto satellite, String satelliteName) {
         saveSatelliteTask.setOrigin(Origin.builder().originClass("TopSecretServiceImpl")
                 .originMethod("saveSatellite(Satellite satellite)").build());
-        return satelliteUseCase.updateSatellite(SatelliteMapper.toEntity(satellite)).then();
+        Satellite satelliteEntity = SatelliteMapper.toEntity(satellite);
+        satelliteEntity.setName(satelliteName);
+        return satelliteUseCase.updateSatellite(satelliteEntity).then();
     }
 
     @Override

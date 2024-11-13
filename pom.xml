@@ -5,8 +5,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<properties>
-		<app.name>Microservicio Template Base</app.name>
-		<app.description>Microservicio base</app.description>
+		<app.name>Microservicio Operación Fuego de Quasar</app.name>
+		<app.description>Microservicio base para la operación Fuego de Quasar. Este microservicio se encarga de recibir señales de diferentes satélites, calcular la posición de una nave espacial y decodificar el mensaje que esta transmite. Utiliza algoritmos de trilateración para determinar la ubicación exacta y técnicas de procesamiento de señales para reconstruir el mensaje original.</app.description>
 		<app.version>1.0.0-SNAPSHOT</app.version>
 	</properties>
 
@@ -17,11 +17,11 @@
 	</parent>
 
 	<groupId>com.meli</groupId>
-	<artifactId>ms-template-spring-webflux</artifactId>
+	<artifactId>ms-quasar-fire-op</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 
-	<name>Template Microservicios</name>
-	<description>Template Microservicios</description>
+	<name>Microservicio Operación Fuego de Quasar</name>
+	<description>Microservicio base para la operación Fuego de Quasar. Este microservicio se encarga de recibir señales de diferentes satélites, calcular la posición de una nave espacial y decodificar el mensaje que esta transmite. Utiliza algoritmos de trilateración para determinar la ubicación exacta y técnicas de procesamiento de señales para reconstruir el mensaje original.</description>
 
 	<url />
 	<licenses>
