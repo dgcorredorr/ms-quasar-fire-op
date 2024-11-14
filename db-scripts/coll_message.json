@@ -1,48 +1,77 @@
-[{
-  "_id": {
-    "$oid": "66aad4ebc4d8f128bdd044c8"
+[
+  {
+    "id": "DEFAULT_ERROR",
+    "description": "Error interno del servicio",
+    "message": "Se presento un error interno por parte del servicio."
   },
-  "id": "DEFAULT_ERROR",
-  "description": "Error interno del servicio",
-  "message": "Se presento un error interno por parte del servicio."
-},
-{
-  "_id": {
-    "$oid": "66aad4ebc4d8f128bdd044c9"
+  {
+    "id": "VALIDATION_FIELD_ERROR",
+    "description": "Error validación de campos obligatorios",
+    "message": "Error validación de campos obligatorios."
   },
-  "id": "VALIDATION_FIELD_ERROR",
-  "description": "Error validación de campos obligatorios",
-  "message": "Error validación de campos obligatorios."
-},
-{
-  "_id": {
-    "$oid": "66aad4ebc4d8f128bdd044ca"
+  {
+    "id": "DEFAULT_SUCCESS",
+    "description": "Proceso ejecutado correctamente.",
+    "message": "Proceso ejecutado correctamente."
   },
-  "id": "DEFAULT_SUCCESS",
-  "description": "Proceso ejecutado correctamente.",
-  "message": "Proceso ejecutado correctamente."
-},
-{
-  "_id": {
-    "$oid": "66aad4ebc4d8f128bdd044cb"
+  {
+    "id": "MESSAGE_NOT_FOUND",
+    "description": "Mensaje no encontrado",
+    "message": "El mensaje no se encuentra cargado en el servicio"
   },
-  "id": "MESSAGE_NOT_FOUND",
-  "description": "Mensaje no encontrado",
-  "message": "El mensaje no se encuentra cargado en el servicio"
-},
-{
-  "_id": {
-    "$oid": "66aad4ebc4d8f128bdd044cc"
+  {
+    "id": "PARAM_NOT_FOUND",
+    "description": "Parámetro no encontrado en base de datos.",
+    "message": "Parámetro no encontrado en base de datos."
   },
-  "id": "PARAM_NOT_FOUND",
-  "description": "Parámetro no encontrado en base de datos.",
-  "message": "Parámetro no encontrado en base de datos."
-},
-{
-  "_id": {
-    "$oid": "66aad4ebc4d8f128bdd044ce"
+  {
+    "id": "WRONG_SATELLITE_INFO",
+    "description": "Información del satélite incorrecta.",
+    "message": "La información proporcionada del satélite SATELLITE_NAME es incorrecta."
   },
-  "id": "NO_CREDENTIALS",
-  "description": "Error validación de credenciales.",
-  "message": "Usuario y contraseña requeridos."
-}]
+  {
+    "id": "MISSING_SATELLITE_INFO",
+    "description": "Falta información del satélite.",
+    "message": "No se ha proporcionado la información necesaria del satélite SATELLITE_NAME."
+  },
+  {
+    "id": "INSUFFICIENT_SATELLITES",
+    "description": "Satélites insuficientes.",
+    "message": "No hay suficientes satélites para realizar la operación."
+  },
+  {
+    "id": "DUPLICATE_SATELLITE_NAMES",
+    "description": "Nombres de satélites duplicados.",
+    "message": "Se han encontrado nombres duplicados de satélites."
+  },
+  {
+    "id": "INSUFFICIENT_INFORMATION",
+    "description": "Información insuficiente.",
+    "message": "La información proporcionada es insuficiente para completar la operación."
+  },
+  {
+    "id": "MESSAGE_INSUFFICIENT_INFORMATION",
+    "description": "Mensaje con información insuficiente.",
+    "message": "El mensaje no contiene la información necesaria."
+  },
+  {
+    "id": "IDENTICAL_SATELLITE_POSITIONS",
+    "description": "Posiciones de satélites idénticas.",
+    "message": "Se han encontrado posiciones idénticas de satélites."
+  },
+  {
+    "id": "QUERY_SATELLITES_ERROR",
+    "description": "Error al consultar satélites.",
+    "message": "Se ha producido un error al consultar los satélites."
+  },
+  {
+    "id": "SATELLITE_NOT_FOUND",
+    "description": "Satélite no encontrado.",
+    "message": "El satélite especificado no se ha encontrado."
+  },
+  {
+    "id": "SAVE_SATELLITES_ERROR",
+    "description": "Error al guardar satélites.",
+    "message": "Se ha producido un error al guardar los satélites."
+  }
+]
