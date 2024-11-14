@@ -76,7 +76,8 @@ public class SatelliteChangeListener {
 
     private boolean isUpdatedBySelf(ChangeStreamDocument<Document> change) {
         UpdateDescription updateDescription = change.getUpdateDescription();
-        if (updateDescription != null) {
+        OperationType operationType = change.getOperationType();
+        if (operationType == OperationType.DELETE || operationType == OperationType.INSERT || updateDescription != null) {
             BsonDocument updatedFields = updateDescription.getUpdatedFields();
             return updatedFields.containsKey("updatedBy") && 
                    updatedFields.getString("updatedBy").toString().equals(GeneralConfig.getAppId());

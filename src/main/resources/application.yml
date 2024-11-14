@@ -13,8 +13,6 @@ spring:
 api:
   context-path: ${API_CONTEXT_PATH:api}
   version: ${API_VERSION:V1}
-  controller:
-    mock: ${API_CONTROLLER_MOCK:mock}
 server:
   port: ${SERVER_PORT:8081}
 springdoc:
